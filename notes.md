@@ -2,7 +2,7 @@
 
 Chloé-Agathe Azencott, Centre for Computational Biology
 
-## 1. 23 Mars 2020
+## 1. March 32th 2020
 
 ### 1.1 Introduction
 
@@ -82,3 +82,105 @@ Chloé-Agathe Azencott, Centre for Computational Biology
 - efficient to compute
 
 ![Complexity](./pics/complexity.png)
+
+
+## 2. March 26th 2020
+
+### 2.1. CNN
+- intro
+    - incredible results in image and speech recognition
+    - deep learning : huge models, millions of parameters, 100 layers
+    - ImageNet, huge dataset (1 million examples)
+    - in deep learning, the model **learns the features**
+- origins
+    - Yann LeCun (French pro. at the NYU, AI director of Facebook)
+    - supervised learning
+- Multi-Layer Perceptron directly on images is not a good idea
+- components
+    - convolutions
+    - pooling (aggregation over space, noise reduction)
+        - average pooling
+        - max pooling
+    - final classification layer : just a regular MLP (`dense`)
+- training
+    - total gradient: `W(t+1) = W(t) - l(t) gradW(Q(t))  + m(t)[W(t)-W(t-1)]`
+    - in high dim, saddle points dominate and therefore local minima are close to the global minimum
+        - approaching saddle points and then escaping them
+        ![saddle](./pics/saddle.png)
+    - tricks
+        - input normalization (zero mean, unit variance)
+        - weights initialization random but SMALL and prop. to `1/sqrt(nbInputs)`
+        - decreasing (or adaptive) learning rate
+        - large number of free parameters -> train with a sufficiently large training-set
+        - avoid overfitting by:
+            - Use of L1 or L2 regularization (after some epochs)
+            - Use "Dropout" regularization
+    - regularization to avoid overfitting
+
+### 2.2. Useful pre-trained convNets
+- LeNet: digits/letters recognition
+- AlexNet, image categorization
+    - ZFnet
+- GoogleNet (inception module, several paths then merged)
+- ResNet (residual, skip connections, map with identity)
+    - 2-3 weeks of training on 8 GPU machine !!
+- PoseNet (precise localization, position + bearing)
+- OpenPose (human posture estimation)
+
+### 2.3. Coding frameworks
+- [TensorFlow](https://www.tensorflow.org)
+- [Caffe](http://caffe.berkeleyvision.org/), C++ library, hooks
+from Python notebooks
+- [Theano](http://www.deeplearning.net/software/theano/)
+    - [Lasagne](http://lasagne.readthedocs.io), lightweight library to build + train neural nets in Theano
+- [pyTorch](https://pytorch.org/)
+- [Keras](https://keras.io), Python front-end APIs mapped either on Tensor-Flow or Theano back-end
+
+### 2.4. Transfer Learning
+- by removing last layers of a convNet trained on ImageNet we obtain a transformation of any input image into a semi-abstract representation
+- we can freeze the layers or fine-tune them
+- applications:
+    - learning on simulated synthetic images + fine-tuning on real-world images 
+    - recognition/classification for other categories or classes
+```py
+from keras.applications.inception_v3 import InceptionV3
+from keras.preprocessing import image
+from keras.models import Model
+from keras.layers import Dense, GlobalAveragePooling2D
+from keras import backend as K # create the base pre-trained model
+base_model = InceptionV3(weights='imagenet', include_top=False) # add a global spatial average pooling layer
+x = base_model.output
+x = GlobalAveragePooling2D()(x)
+# let's add a fully-connected layer
+x = Dense(1024, activation='relu')(x)
+# and a logistic layer -- let's say we have 200 classes
+predictions = Dense(200, activation='softmax')(x)
+model = Model(input=base_model.input, output=predictions)
+# first: train only the top layers (which were randomly initialized)
+# i.e. freeze all convolutional InceptionV3 layers
+for layer in base_model.layers:
+    layer.trainable = False
+# compile the model (should be done *after* setting layers to non-trainable)
+model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
+# train the model on the new data for a few epochs
+model.fit_generator(...)
+```
+
+### 2.5. Object localization and Semantic segmentation
+- [Faster_RCNN](https://arxiv.org/pdf/1506.01497.pdf): object detection and categorization
+    - Region Proposal Network (RPN) on top of convNet
+    - end-to-end training with 4 losses
+- single shot detection: YOLO, SSD, faster but less accurate than Faster_RCNN
+- Mask_RCNN: categorization, localization with shape/contours
+- semantic segmentation
+    - encoder-decoder
+    - SegNet (2015)
+    - U-Net (2015)
+    - RefineNet (2016)
+    - ICnet (2017)
+    - DeepLab 
+
+### 2.6. Deep-Learning on 1D signal and 3D data
+- 
+
+### 2.7. Recent other image-based applications
