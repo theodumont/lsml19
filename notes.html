@@ -1057,7 +1057,7 @@ body .markdown-body
 .codehilite .gc{color:#999;background-color:#EAF2F5}
 </style><title>notes</title></head><body><article class="markdown-body"><h1 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link"></a></h1>
 <p>Chloé-Agathe Azencott, Centre for Computational Biology</p>
-<h2 id="1-march-32th-2020">1. March 32th 2020<a class="headerlink" href="#1-march-32th-2020" title="Permanent link"></a></h2>
+<h2 id="1-introduction-to-large-scale-machine-learning">1. Introduction to Large Scale Machine Learning<a class="headerlink" href="#1-introduction-to-large-scale-machine-learning" title="Permanent link"></a></h2>
 <h3 id="11-introduction">1.1 Introduction<a class="headerlink" href="#11-introduction" title="Permanent link"></a></h3>
 <ul>
 <li>risk minimization<ul>
@@ -1169,7 +1169,7 @@ body .markdown-body
 <li>efficient to compute</li>
 </ul>
 <p><img alt="Complexity" src="/C:/Users/Th%C3%A9o%20Dumont/repos/python/large-scale-ml-19/pics/complexity.png" /></p>
-<h2 id="2-march-26th-2020">2. March 26th 2020<a class="headerlink" href="#2-march-26th-2020" title="Permanent link"></a></h2>
+<h2 id="2-deep-learning">2. Deep-Learning<a class="headerlink" href="#2-deep-learning" title="Permanent link"></a></h2>
 <h3 id="21-cnn">2.1. CNN<a class="headerlink" href="#21-cnn" title="Permanent link"></a></h3>
 <ul>
 <li>intro<ul>
@@ -1297,4 +1297,51 @@ from Python notebooks</li>
 </li>
 </ul>
 <h3 id="26-deep-learning-on-1d-signal-and-3d-data">2.6. Deep-Learning on 1D signal and 3D data<a class="headerlink" href="#26-deep-learning-on-1d-signal-and-3d-data" title="Permanent link"></a></h3>
-<h3 id="27-recent-other-image-based-applications">2.7. Recent other image-based applications<a class="headerlink" href="#27-recent-other-image-based-applications" title="Permanent link"></a></h3></article></body></html>
+<ul>
+<li>time-series: MC-DCNN model<ul>
+<li>separate 1D temporal convolution of each time series</li>
+<li>deep gesture recognition</li>
+</ul>
+</li>
+<li>3D data<ul>
+<li>possible to use 2D images of multiple views, 2D depth images</li>
+<li>3D convolutions on voxels: <a href="https://www.ri.cmu.edu/pub_files/2015/9/voxnet_maturana_scherer_iros15.pdf">VoxNet</a>, <a href="https://github.com/Durant35/VoxNet">GitHub</a>    </li>
+</ul>
+</li>
+</ul>
+<h3 id="27-conclusion">2.7. Conclusion<a class="headerlink" href="#27-conclusion" title="Permanent link"></a></h3>
+<ul>
+<li>Enormous potential of transfer-learning on small datasets for restricted/specialized problems</li>
+<li>perspectives:<ul>
+<li>UNsupervised deep-learning on unlabelled data</li>
+<li>Deep Reinforcement Learning (DRL)</li>
+<li>Deep Recurrent Neural Networks</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-deep-learning-unsupervised-generative-models">3. Deep-Learning - Unsupervised Generative models<a class="headerlink" href="#3-deep-learning-unsupervised-generative-models" title="Permanent link"></a></h2>
+<h3 id="31-unsupervised-learning-and-generative-models">3.1. Unsupervised Learning and Generative Models<a class="headerlink" href="#31-unsupervised-learning-and-generative-models" title="Permanent link"></a></h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">Supervised learning</th>
+<th align="center">Unsupervised learning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">data</td>
+<td align="center"><code>(x,y)</code></td>
+<td align="center"><code>x</code></td>
+</tr>
+<tr>
+<td align="center">goal</td>
+<td align="center">how to map <code>x-&gt;y</code></td>
+<td align="center">learn hidden structure of data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-deep-belief-networks-dbn-and-deep-boltzman-machine-dbm">3.2. Deep Belief Networks (DBN) and Deep Boltzman Machine (DBM)<a class="headerlink" href="#32-deep-belief-networks-dbn-and-deep-boltzman-machine-dbm" title="Permanent link"></a></h3>
+<h3 id="33-autoencoders">3.3. Autoencoders<a class="headerlink" href="#33-autoencoders" title="Permanent link"></a></h3>
+<h3 id="34-generative-adversarial-networks-gan">3.4. Generative Adversarial Networks (GAN)<a class="headerlink" href="#34-generative-adversarial-networks-gan" title="Permanent link"></a></h3></article></body></html>

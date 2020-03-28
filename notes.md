@@ -2,7 +2,7 @@
 
 Chloé-Agathe Azencott, Centre for Computational Biology
 
-## 1. March 32th 2020
+## 1. Introduction to Large Scale Machine Learning
 
 ### 1.1 Introduction
 
@@ -84,7 +84,7 @@ Chloé-Agathe Azencott, Centre for Computational Biology
 ![Complexity](./pics/complexity.png)
 
 
-## 2. March 26th 2020
+## 2. Deep-Learning
 
 ### 2.1. CNN
 - intro
@@ -181,6 +181,54 @@ model.fit_generator(...)
     - DeepLab 
 
 ### 2.6. Deep-Learning on 1D signal and 3D data
-- 
+- time-series: MC-DCNN model
+    - separate 1D temporal convolution of each time series
+    - deep gesture recognition
+- 3D data
+    - possible to use 2D images of multiple views, 2D depth images
+    - 3D convolutions on voxels: [VoxNet](https://www.ri.cmu.edu/pub_files/2015/9/voxnet_maturana_scherer_iros15.pdf), [GitHub](https://github.com/Durant35/VoxNet)    
 
-### 2.7. Recent other image-based applications
+### 2.7. Conclusion
+- Enormous potential of transfer-learning on small datasets for restricted/specialized problems
+- perspectives:
+    - UNsupervised deep-learning on unlabelled data
+    - Deep Reinforcement Learning (DRL)
+    - Deep Recurrent Neural Networks
+    
+    
+## 3. Deep-Learning - Unsupervised Generative models
+
+### 3.1. Unsupervised Learning and Generative Models
+||Supervised learning|Unsupervised learning|
+|:-:|:-:|:-:|
+|data|`(x,y)`, data and label|`x`, only data|
+|goal|how to map `x->y`|learn hidden structure of data|
+
+- [generative models](https://towardsdatascience.com/deep-generative-models-25ab2821afd3)
+
+### 3.2. Deep Belief Networks (DBN) and Deep Boltzman Machine (DBM)
+- for capturing high-order correlations of observed/visible data
+    - successive unsupervised learning of layers of Restricted Boltzmann Machine (RBM)
+- RBM
+- using low-dim final features for clustering
+
+### 3.3. Autoencoders
+![Auto-encoder](./pics/autoencoders.png)
+
+- learn `q_0` and `p_0` in order to minimize __reconstruction cost__
+- variants :
+    - denoising autoencoders
+    - sparse autoencoders
+    - stochastic autoencoders
+    - contractive autoencoders
+    - variational autoencoders 
+
+### 3.4. Generative Adversarial Networks (GAN)
+- goal: generate artificial credible examples
+    - **generator network**: try to fool the discriminator by generating real-looking images
+    - **discriminator network**: try to distinguish between real and fake images
+    - formulate as `min_G min_D V(D,G)`
+- application:
+    - trajectory in latent space
+    - image-to-image translation
+    - domain transfer
